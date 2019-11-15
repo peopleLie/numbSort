@@ -1,5 +1,4 @@
 const info = [];
-
 function createEl() {
     const txt = document.createElement('span');
     txt.classList.add('text');
@@ -12,16 +11,22 @@ function insertText(array) {
     const span = createEl();
     const text = array.join(`</br>`); // разделитель ${sepr}
     span.innerHTML += text; 
-    console.dir(info);
+    insertResult();
+};
+
+function insertResult() {
+    const out = createEl();
+    info[2] = info[2].join(' ');  
+    out.innerHTML = info.join('</br>');
 };
 
 function filterByBase(base, editNumbers) {
     let final = [];
-    info[3] = 0;
+    info[2] = ['совпадений:', 0];
     editNumbers.forEach(el => {
         for (let i = 0; i < base.length; i++) {
             if (el === base[i]) {
-                info[3] += 1;
+                info[2][1] += 1;
                 return;
             };
         }
@@ -51,7 +56,7 @@ button.addEventListener('click', e => {
         button.style.display = 'none';
         userData.style.display = 'none';
 
-        info[2] = `Base: ${base.length}`;
+        info[3] = `Base: ${base.length}`;
         filterByBase(base, editNumbers);
     });  
 }
