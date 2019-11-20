@@ -10,7 +10,7 @@ function insertText(array) {
     // const sepr = confirm('разделитель запятая?') ? ',' : "";
     const span = createEl();
     const text = array.join(`</br>`); // разделитель ${sepr}
-    span.innerHTML += text; 
+    span.innerHTML += `${text}</br>` ; 
     insertResult();
 };
 
