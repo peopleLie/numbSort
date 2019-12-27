@@ -1,6 +1,7 @@
-const info = [];
-function createEl() {
-    const txt = document.createElement('span');
+let info = [];
+function createEl(el) {
+    const tag = el || 'span';
+    const txt = document.createElement(tag);
     txt.classList.add('text');
     document.body.appendChild(txt);
     return txt;
@@ -9,13 +10,13 @@ function createEl() {
 function insertText(array) {
     const span = createEl();
     const text = array.join(`</br>`);
-    span.innerHTML += `${text}</br>` ; 
+    span.innerHTML += `${text}</br>`;
     insertResult();
 };
 
 function insertResult() {
     const out = createEl();
-    info[2] = info[2].join(' ');  
+    info[2] = info[2].join(' ');
     out.innerHTML = info.join('</br>');
 };
 
@@ -52,11 +53,90 @@ button.addEventListener('click', e => {
     .then(response => response.text())
     .then(text => text.split('\r\n'))
     .then(base => {
-        button.style.display = 'none';
-        userData.style.display = 'none';
-
-        info[3] = `Base: ${base.length}`;
-        filterByBase(base, editNumbers);
-    });  
+            button.style.display = 'none';
+            document.querySelector('.container').classList.add('none');
+            // userData.style.display = 'none';
+            
+            info[3] = `Base: ${base.length}`;
+            filterByBase(base, editNumbers);
+        });
 }
 );
+
+const xls = document.querySelector('.xlsButton');
+xls.addEventListener('click', e => {
+    const userData = document.querySelector('.xls');
+    const data = JSON.parse(userData.value)['Виписки'];
+    const editData = [];
+
+    data.forEach(el => {
+        if (el.length > 1 && el[4].split(' ')[0] === 'Рекламні' && el[8] === 'дол') {
+            const tmp = [];
+            tmp.push(el[0]);
+            tmp.push(el[7]);
+            editData.push(tmp);
+        }
+    });
+
+    const output = [];
+    let counter = 0;
+    let check = editData[0][0];
+
+
+    for (let i = 0; i < editData.length; i++) {
+        if (editData[i][0] === check) {
+            counter += +editData[i][1];
+            // console.log(i, check, counter);
+        } else {
+            output.push([check, +counter.toFixed(2)]);
+            check = editData[i][0];
+            counter = editData[i][1];
+        };
+
+    };
+    output.push([check, counter]);
+    info = output.reverse();
+
+    function insertTxt(array) {
+        const span = createEl();
+        const span2 = createEl();
+        const span3 = createEl();
+        const box = createEl('div');
+        span.classList.add('table');
+        span2.classList.add('table');
+        span3.classList.add('table');
+        box.classList.add('box');
+        span3.style.marginTop = '10px';
+        span3.style.display = 'inline-block';
+        span.innerHTML = data[2][3].split(' ')[2] + '</br>' + '</br>';
+
+        array.forEach(el => {
+        span.innerHTML += `${el[0]} ${el[1]}</br>`;
+        span2.innerHTML += `${el[1]}</br>`;
+        span3.innerHTML += `${el[0]}</br>`;
+    });
+    box.appendChild(span); 
+    document.body.appendChild(box); 
+    document.body.appendChild(span2); 
+    document.body.appendChild(span3); 
+
+    };
+
+    insertTxt(info);
+    document.querySelector('.container').classList.add('none');
+});
+
+
+
+// fetch("../base.txt")
+// .then(response => response.text())
+// .then(text => text.split('\r\n'))
+// .then(base => {
+//     base.forEach((el, iter) => {
+//         console.log(iter);        
+//         for (let i = 0; i < base.length; i++) {        
+//             if (el === base[i] && iter !== i) console.log(el);                        
+//         }
+//     });
+// }); 
+
