@@ -74,30 +74,3 @@ button.addEventListener('click', e => {
         });
 }
 );
-
-// const button = document.querySelector('.button');
-// button.addEventListener('click', e => {
-//     const userData = document.querySelector('.tel');
-//     const editNumbers = [];
-//     const data = userData.value.split('\n');
-
-//     data.forEach(el => {
-//         if (el === '\n' || el === '' || el[0] === 'н') return;
-//         editNumbers.push(`+38${el.substr(-10, 10)}`);
-//     });
-
-//     info[0] = `вход: ${data.length}`;
-//     info[1] = `ред.: ${editNumbers.length}`;
-
-//     fetch("../telbase.txt")
-//         .then(response => response.text())
-//         .then(text => text.split('\r\n'))
-//         .then(base => {
-//             button.style.display = 'none';
-//             userData.style.display = 'none';
-
-//             info[3] = `Base: ${base.length}`;
-//             filterByBase(base, editNumbers);
-//         });
-// }
-// );
