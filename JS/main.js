@@ -62,7 +62,7 @@ button.addEventListener('click', e => {
     info[0] = `вход: ${data.length}`;
     info[1] = `ред.: ${editNumbers.length}`;
 
-    fetch("JS/telbase.txt")
+    fetch("js/telbase.txt")
         .then(response => response.text())
         .then(text => text.split('\r\n'))
         .then(base => {
