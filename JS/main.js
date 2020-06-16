@@ -63,7 +63,7 @@ button.addEventListener('click', e => {
     info[1] = `ред.: ${editNumbers.length}`;
 
     // fetch("js/telbase.txt")
-    fetch("js/telbase.js", {
+    fetch("js/telbase.txt", {
 headers: {
         'Content-Type': 'application/json'
     },})
