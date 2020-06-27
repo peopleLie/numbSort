@@ -32,6 +32,8 @@ function filterByBase(base, editNumbers) {
                 return;
             };
         }
+        info[4] = `итог: ${final.length}`; // добавлен пункт ИТОГ
+       
         final.push(el);
     });
     insertText(final);
