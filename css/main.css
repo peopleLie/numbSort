@@ -1,4 +1,7 @@
 
+/* * {
+  outline:1px solid yellow;
+} */
 body {
   background-color: rgb(99, 99, 99);
   color: rgb(255, 255, 255);
@@ -34,6 +37,18 @@ body {
   margin-bottom: 20px;
 }
 
+#copyText {
+  padding: 6px 11px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #121212;
+  color: #efefef;
+  display: none;
+}
+
+#buffer {
+  display: none;
+}
 .container {
  margin: 10px;
 }
